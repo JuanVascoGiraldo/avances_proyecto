@@ -1,0 +1,40 @@
+
+
+a>img{
+    width: 5%;
+    object-fit: cover;
+}
+
+span{
+    font-size: 0.7em;
+    align-items: center;
+    color: white;
+}
+
+.nav-link{
+    color: white;
+}
+
+.nav-link:visited{
+    color: white;
+}
+
+header>nav{
+    background-color: var(--secondary-color);
+}
+
+header, main {
+    display: block;
+    width: 100%;
+    clear: both;
+    box-sizing: border-box; /* Asegura que padding y borde se incluyan en el tamaño total */
+}
+
+main{
+    margin-top: 20px;
+}
+
+footer{
+    background-color: var(--tertiary-color);
+    color: white;
+}
