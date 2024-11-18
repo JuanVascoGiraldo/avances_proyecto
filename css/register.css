@@ -20,7 +20,6 @@
 
 #locker-form {
     width: 50%;
-    min-width: 300px;
     margin: auto;
     background-color: white;
     margin-bottom: 2%;
@@ -55,6 +54,19 @@
         height: 20px;
         display: block;
     }
+
+    .custom-file-button input{
+        display: block;
+        width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+    #locker-form {
+        width: 80%;
+    }
+    
 }
 
 .custom-file-button label img {
