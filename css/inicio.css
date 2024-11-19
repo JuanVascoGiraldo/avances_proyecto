@@ -57,6 +57,7 @@
 @media screen and (max-width: 1000px){
     #nosotros .card{
         width: 80%;
+        margin: auto;
     }
     #nosotros .card .col-md-4{
         width: 100%;

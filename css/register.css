@@ -47,6 +47,7 @@
 
 @media screen and (max-width: 1300px) {
     .custom-file-button label {
+        text-align: center;
         width: 100%;
     }
     .custom-file-button label img{
