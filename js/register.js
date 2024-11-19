@@ -7,6 +7,7 @@ const regex_phone = /^[0-9]{10}$/;
 const regex_num_locker = /^[0-9]{1,3}$/;
 const regex_height = /^[0-9]{1,3}$/;
 const regex_curp = /^[A-Z]{4}[0-9]{6}[HM]{1}[A-Z]{2}[QWRTYPSDFGHJKLZXCVBNM]{3}[A-Z0-9]{1}[0-9]{1}$/;
+const regex_complete_password = /^[A-Za-z0-9$#*+]{8,30}$/
 
 
 function mostrarnucas(show) {
@@ -99,11 +100,9 @@ function monstrar_mensaje_campo_incopleto(campo, nombre, texto) {
         title: "Datos",
         text: nombre + " esta incompleto o es incorrecto. " + texto,
     }).then(() => {
-        campo.classList.add("invalid_campo");
         setTimeout(() => {
-            campo.classList.remove("invalid_campo");
             campo.focus();
-        }, 2000);
+        }, 300);
     });
 }
 
@@ -247,12 +246,17 @@ function validar_password_form() {
         monstrar_mensaje_campo_incopleto(password, "La Contraseña", "Recuerda que la contraseña no puede tener espacios en blanco");
         return false
     }
+
+    if(!regex_complete_password.test(password.value)){
+        monstrar_mensaje_campo_incopleto(password, "La Contraseña", "Recuerda que la contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número");
+        return false;
+    }
     return true;
 }
 
 
 function validateForm() {
-    if (!validar_credencial()) return;
+
     let is_renovacion = false;
     let seleccion = document.querySelector('input[name="tipoSolicitud"]:checked');
     if (seleccion == null) {
@@ -327,37 +331,57 @@ function showValues(
     is_renovacion
 ) {
     texto = is_renovacion
-        ? `<p class="info"><img src="./imgs/documentacion.png" alt="Solicitud" /> Tipo de solicitud: Renovación</p><p class="info"><img src="./imgs/documentacion.png" alt="Casillero" /> Número de Casillero: ${locker}</p>`
-        : `<p class="info"><img src="./imgs/documentacion.png" alt="Solicitud" /> Tipo de solicitud: Nuevo</p>`;
+        ? `<p class="info"><span class="span-show-info">Tipo de solicitud</span> Renovación</p>`
+        : `<p class="info"><span class="span-show-info">Tipo de solicitud</span> Nuevo</p>`;
 
     Swal.fire({
         icon: "warning",
         title: "Confirma tus datos",
         html: `
-        ${texto}
-        <p class="info"><img src="./imgs/documentacion.png" alt="Nombre" /> Primer nombre: ${primer_nombre}</p>
-        <p class="info"><img src="./imgs/documentacion.png" alt="Nombre" /> Segundo nombre: ${segundo_nombre}</p>
-        <p class="info"><img src="./imgs/documentacion.png" alt="Apellido" /> Primer apellido: ${primer_apellido}</p>
-        <p class="info"><img src="./imgs/documentacion.png" alt="Apellido" /> Segundo apellido: ${segundo_apellido}</p>
-        <p class="info"><img src="./imgs/documentacion.png" alt="Teléfono" /> Teléfono: ${telefono}</p>
-        <p class="info"><img src="./imgs/documentacion.png" alt="Email" /> Email: ${email}</p>
-        <p class="info"><img src="./imgs/documentacion.png" alt="Boleta" /> Boleta: ${boleta}</p>
-        <p class="info"><img src="./imgs/documentacion.png" alt="Altura" /> Altura: ${altura}cm</p>
-        <p class="info"><img src="./imgs/documentacion.png" alt="Credencial" /> Credencial: ${credencial.files[0].name}</p>
-        <p class="info"><img src="./imgs/documentacion.png" alt="Horario" /> Horario: ${horario.files[0].name}</p>
-        <p class="info"><img src="./imgs/documentacion.png" alt="CURP" /> CURP: ${curp}</p>
+
+        <div class="d-flex div-show-info">
+            <img src="./imgs/documentacion.png" alt="Nombre" class="img-response"/>
+            <div class="body-show-info">
+                ${texto}
+                <p class="info"><span class="span-show-info">Casillero</span>${is_renovacion? locker: "No aplica"}</p>
+                <p class="info"><span class="span-show-info">Primer nombre</span>${primer_nombre}</p>
+                <p class="info"><span class="span-show-info">Segundo nombre</span>${segundo_nombre}</p>
+            </div>
+        </div>
+        <div class="d-flex div-show-info">
+            <div class="body-show-info">
+                <p class="info"><span class="span-show-info">Primer apellido</span>${primer_apellido}</p>
+                <p class="info"><span class="span-show-info">Segundo apellido</span>${segundo_apellido}</p>
+                <p class="info"><span class="span-show-info">Teléfono</span>${telefono}</p>
+                <p class="info"><span class="span-show-info">Email</span>${email}</p>
+            </div>
+            <img src="./imgs/informacion.png" alt="Nombre" class="img-response"/>
+        </div>
+        <div class="d-flex div-show-info">
+        <img src="./imgs/usuario.png" alt="Nombre" class="img-response"/>
+            <div class="body-show-info">
+                <p class="info"><span class="span-show-info">Boleta</span>${boleta}</p>
+                <p class="info"><span class="span-show-info">Altura</span>${altura} cm</p>
+                <p class="info"><span class="span-show-info">Credencial</span>${credencial.files[0].name}</p>
+                <p class="info"><span class="span-show-info">Horario</span>${horario.files[0].name}</p>
+            </div>
+        </div>
+        <div class="body-show-info">
+            <p class="info"><span class="span-show-info">CURP (Usuario)</span> ${curp}</p>
+        </div>
         `,
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Informacion correcta",   
+        cancelButtonText: "Regresar y Cambiar"
     }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire({
-            title: "Información guardada",
-            text: "Tu información ha sido guardada correctamente",
-            icon: "success"
-          });
+            Swal.fire({
+                title: "Información guardada",
+                text: "Tu información ha sido guardada correctamente",
+                icon: "success"
+            });
         }
     });
 }
