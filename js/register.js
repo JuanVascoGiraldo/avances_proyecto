@@ -25,7 +25,7 @@ const requirements = {
 };
 
 const regex = {
-    minLength: /.{8,30}/,
+    minLength: /^.{8,30}$/,
     uppercase: /[A-Z]/,
     lowercase: /[a-z]/,
     number: /\d/,
@@ -241,14 +241,12 @@ function validar_password_form() {
             monstrar_mensaje_campo_incopleto(password, "La Contraseña", "Recuerda que la contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número");
             return false;
         }
-    }
-    if (regex_space.test(password.value)) {
-        monstrar_mensaje_campo_incopleto(password, "La Contraseña", "Recuerda que la contraseña no puede tener espacios en blanco");
-        return false
+        alert(key);
+        alert(regex[key].test(password.value));
     }
 
     if(!regex_complete_password.test(password.value)){
-        monstrar_mensaje_campo_incopleto(password, "La Contraseña", "Recuerda que la contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número");
+        monstrar_mensaje_campo_incopleto(password, "La Contraseña", "Recuerda que la contraseña debe tener al menos 8 caracteres, maximo 30, una mayúscula, una minúscula y un número");
         return false;
     }
     return true;
@@ -256,6 +254,7 @@ function validar_password_form() {
 
 
 function validateForm() {
+    if (!validar_password_form()) return;
 
     let is_renovacion = false;
     let seleccion = document.querySelector('input[name="tipoSolicitud"]:checked');

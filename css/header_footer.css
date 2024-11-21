@@ -54,3 +54,7 @@ footer{
     }
     
 }
+
+.navbar-toggler{
+    margin: auto;
+}

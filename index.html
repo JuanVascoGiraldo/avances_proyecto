@@ -15,24 +15,18 @@
     <header>
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <a class="navbar-brand d-flex" href="#" style="margin: auto;">
+                <a class="navbar-brand d-flex" href="#">
                     <img src="imgs/ipn_logo.png" alt="logo Escom" title="logo ESCOM" class="d-inline-block"  onclick="location.href='https://www.ipn.mx';">
-                    <span class="d-inline-block">&nbsp;&nbsp;Sistema de Gestión de Casilleros ESCOM (SIGCA)&nbsp;&nbsp;</span>
+                    <span class="d-flex">&nbsp;&nbsp;Sistema de Gestión de Casilleros ESCOM (SIGCA)&nbsp;&nbsp;</span>
                     <img src="imgs/escom_logo.png" alt="logo Escom" title="logo ESCOM" class="d-inline-block"  onclick="location.href='https://www.escom.ipn.mx';">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="margin: auto;">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Inicio
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#noticias">Noticias</a></li>
-                                <li><a class="dropdown-item" href="#nosotros">Sobre Nosotros</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" onclick="send_to_index()">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" onclick="send_to_register()">Registro</a>
