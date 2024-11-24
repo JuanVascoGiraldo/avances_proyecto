@@ -34,7 +34,6 @@
     width: 48%;
     border-radius: 30px;
     box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.2);
-    overflow: None;
     padding: auto;
 }
 
@@ -79,18 +78,13 @@
     #nosotros .card .col-md-8{
         width: 100%;
     }
+
+    .carousel .card{
+        width: 80%;
+    }
 }
 
 @media screen and (max-width: 500px){
-    #nosotros .card{
-        width: 100%;
-    }
-    #nosotros .card .col-md-4{
-        height: 30%;
-    }
-}
-
-@media screen and (max-width: 200px){
     #nosotros .card{
         width: 100%;
     }
