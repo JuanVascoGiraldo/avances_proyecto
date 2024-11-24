@@ -5,7 +5,7 @@ a>img{
     object-fit: cover;
 }
 
-span{
+a>span{
     font-size: 0.7em;
     align-items: center;
     color: white;
