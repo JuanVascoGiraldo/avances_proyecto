@@ -89,3 +89,12 @@
         height: 30%;
     }
 }
+
+@media screen and (max-width: 200px){
+    #nosotros .card{
+        width: 100%;
+    }
+    #nosotros .card .col-md-4{
+        height: 30%;
+    }
+}

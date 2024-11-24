@@ -241,8 +241,6 @@ function validar_password_form() {
             monstrar_mensaje_campo_incopleto(password, "La Contraseña", "Recuerda que la contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número");
             return false;
         }
-        alert(key);
-        alert(regex[key].test(password.value));
     }
 
     if(!regex_complete_password.test(password.value)){
@@ -380,6 +378,11 @@ function showValues(
                 title: "Información guardada",
                 text: "Tu información ha sido guardada correctamente",
                 icon: "success"
+            }).then(() => {
+                // setTimeout(() => {
+                //     document.getElementById('form').submit();
+                // }, 300);
+                send_to_acuse();
             });
         }
     });
