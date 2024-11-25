@@ -42,7 +42,7 @@
     color: white;
     width: 49%;
     font-size: small;
-    min-width: 240px;
+    min-width: 200px;
 }
 
 @media screen and (max-width: 1300px) {
